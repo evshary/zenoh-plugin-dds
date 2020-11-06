@@ -51,7 +51,10 @@ popd &>/dev/null
 hash cargo 2>/dev/null
 if [[ ( "$?" != 0 ) && $target == "Linux" ]];
 then
-    curl https://sh.rustup.rs -sSf | sh
+    curl -s https://sh.rustup.rs > rust_install.sh
+    chmod a+x rust_install.sh
+    sh rust_install.sh -y
+    rm rust_install.sh
 else
     echo "Cargo is already installed, skipping installation."
 fi
